@@ -6,16 +6,18 @@
  */
 
 var Share = function() {};
-			
+            
 Share.prototype.show = function(content, success, fail) {
-	return PhoneGap.exec( function(args) {
-		success(args);
-	}, function(args) {
-		fail(args);
-	}, 'Share', '', [content]);
+    return cordova.exec( function(args) {
+        success(args);
+    }, function(args) {
+        fail(args);
+    }, 'Share', '', [content]);
 };
 
-PhoneGap.addConstructor(function() {
-	PhoneGap.addPlugin('share', new Share());
-	PluginManager.addService("Share","com.schaul.plugins.share.Share");
-});
+if(!window.plugins) {
+    window.plugins = {};
+}
+if (!window.plugins.share) {
+    window.plugins.share = new Share();
+}
