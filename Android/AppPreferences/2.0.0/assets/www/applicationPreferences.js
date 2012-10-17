@@ -26,6 +26,14 @@ cordova.define("cordova/plugin/applicationpreferences", function(require, export
 	    cordova.exec(success,fail,"applicationPreferences","show",[activity]);    
 	};
 	
+	AppPreferences.prototype.clear = function(success,fail) {
+	    cordova.exec(success,fail,"applicationPreferences","clear", []);    
+	};
+	
+	AppPreferences.prototype.remove = function(keyToRemove, success,fail) {
+	    cordova.exec(success,fail,"applicationPreferences","remove", [keyToRemove]);    
+	};
+
 	var appPreferences = new AppPreferences();
 	module.exports = appPreferences;
 });
